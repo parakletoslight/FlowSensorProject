@@ -1,6 +1,6 @@
 #include <math.h>
 #include "Arduino.h"
-#include "FlowMeter.h"                                                      // https://github.com/sekdiy/FlowMeter
+#include "flowmeter.h"                                                      // https://github.com/sekdiy/FlowMeter
 
 FlowMeter::FlowMeter(unsigned int pin, FlowSensorProperties prop, void (*callback)(void), uint8_t interruptMode) :
     _pin(pin),                                                              // store pin number
