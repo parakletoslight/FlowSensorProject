@@ -8,7 +8,7 @@
  * @version See git comments for changes.
  */
 
-#include "FlowSensorProperties.h"
+#include "flowsensorproperties.h"
 
 FlowSensorProperties UncalibratedSensor = {60.0f, 5.0f, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 FlowSensorProperties FS300A = {60.0f, 5.5f, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
