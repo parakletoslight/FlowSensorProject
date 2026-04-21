@@ -1,8 +1,8 @@
 #ifndef _FLOWMETER_H_
 #define _FLOWMETER_H_
 
-#include "FlowSensorProperties.h"
-#include "FlowSensorCalibration.h"
+#include "flowsensorproperties.h"
+#include "flowsensorcalibration.h"
 
 class FlowMeter {
   public:
