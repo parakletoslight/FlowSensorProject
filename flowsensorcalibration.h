@@ -1,7 +1,7 @@
 #ifndef _FLOWSENSORCALIBRATION_H_
 #define _FLOWSENSORCALIBRATION_H_s
 
-#include "FlowSensorProperties.h"
+#include "flowsensorproperties.h"
 
 /**
  * FlowSensorCalibration
