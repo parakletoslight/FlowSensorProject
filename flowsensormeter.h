@@ -1,22 +1,9 @@
-/**
- * Flow Meter
- *
- * An Arduino flow meter library that provides calibrated liquid flow and volume measurement with flow sensors.
- *
- * @author sekdiy (https://github.com/sekdiy/FlowMeter)
- * @date 14.07.2015 Initial release.
- * @version See git comments for changes.
- */
-
 #ifndef _FLOWMETER_H_
 #define _FLOWMETER_H_
 
 #include "FlowSensorProperties.h"
 #include "FlowSensorCalibration.h"
 
-/**
- * FlowMeter
- */
 class FlowMeter {
   public:
     /**
