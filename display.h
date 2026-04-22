@@ -2,6 +2,9 @@
 #define DISPLAY_H
 
 void initDisplay();
-void updateDisplay(float volume, float flowRate, float cost, bool isRunning);
+void showMainMenu(int index);
+void showDispenseMenu(int index);
+void showDispensing(int view);
+void showHistory();
 
 #endif

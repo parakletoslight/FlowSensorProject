@@ -1,48 +1,58 @@
 #include <Arduino.h>
-#include <SPI.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_ST7735.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 #include "display.h"
+#include "system.h"
 
-// ===== SPI PINS (adjust if needed) =====
-#define TFT_CS   5
-#define TFT_DC   2
-#define TFT_RST  4
-
-Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void initDisplay() {
-    tft.initR(INITR_BLACKTAB);   // IMPORTANT
-    tft.setRotation(1);
-    tft.fillScreen(ST77XX_BLACK);
-
-    tft.setTextSize(1);
-    tft.setTextColor(ST77XX_WHITE);
-
-    tft.setCursor(10, 5);
-    tft.print("Flow System");
+    Wire.begin(21, 22);
+    lcd.init();
+    lcd.backlight();
+    lcd.clear();
+    lcd.print("Starting...");
+    delay(1000);
 }
 
-void updateDisplay(float volume, float flowRate, float cost, bool isRunning) {
+void showMainMenu(int index) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print(index == 0 ? ">Dispense" : " Dispense");
+    lcd.setCursor(0, 1);
+    lcd.print(index == 1 ? ">History" : " History");
+}
 
-    // Clear only data area
-    tft.fillRect(0, 20, 160, 100, ST77XX_BLACK);
+void showDispenseMenu(int index) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print(index == 0 ? ">Start Disp" : " Start Disp");
+    lcd.setCursor(0, 1);
+    lcd.print(index == 1 ? ">Back" : " Back");
+}
 
-    tft.setCursor(0, 25);
-    tft.print("V:");
-    tft.print(volume, 0);
-    tft.print("mL");
+void showDispensing(int view) {
+    lcd.clear();
 
-    tft.setCursor(0, 45);
-    tft.print("F:");
-    tft.print(flowRate, 1);
-    tft.print("mL/s");
+    if (view == 0) {
+        lcd.print("Flow:");
+        lcd.setCursor(0, 1);
+        lcd.print(flowRate, 1);
+        lcd.print(" mL/s");
+    } else if (view == 1) {
+        lcd.print("Cost:");
+        lcd.setCursor(0, 1);
+        lcd.print("KSh ");
+        lcd.print(totalCost, 2);
+    } else {
+        lcd.print("Volume:");
+        lcd.setCursor(0, 1);
+        lcd.print(totalVolume, 0);
+        lcd.print(" mL");
+    }
+}
 
-    tft.setCursor(0, 65);
-    tft.print("KSh:");
-    tft.print(cost, 2);
-
-    tft.setCursor(0, 85);
-    tft.print("Status:");
-    tft.print(isRunning ? "RUN" : "STOP");
+void showHistory() {
+    lcd.clear();
+    lcd.print("History...");
 }
