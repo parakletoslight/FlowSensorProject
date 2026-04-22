@@ -2,6 +2,7 @@
 #include "display.h"
 #include "input.h"
 #include "system.h"
+#include "flow.h"
 
 // ===== STATES =====
 enum State {
@@ -28,11 +29,12 @@ void setup() {
 
     initDisplay();
     initButtons();
+    initFlowSensor();   
 }
 
 // ===== LOOP =====
 void loop() {
-
+    updateFlow();   
     switch (currentState) {
 
         case MAIN_MENU:
